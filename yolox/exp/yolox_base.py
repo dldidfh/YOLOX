@@ -39,11 +39,11 @@ class Exp(BaseExp):
         # dir of dataset images, if data_dir is None, this project will use `datasets` dir
         self.data_dir = "./"
         # name of annotation file for training
-        self.train_ann = "20220630_cityeyelab_cat6_v1.0_train.json"
+        self.train_ann = None
         # name of annotation file for evaluation
-        self.val_ann = "20220630_cityeyelab_cat6_v1.0_test.json"
+        self.val_ann = None
         # name of annotation file for testing
-        self.test_ann = "20220630_cityeyelab_cat6_v1.0_test.json"
+        self.test_ann = None
 
         # --------------- transform config ----------------- #
         # prob of applying mosaic aug
