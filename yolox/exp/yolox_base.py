@@ -149,6 +149,7 @@ class Exp(BaseExp):
                     flip_prob=self.flip_prob,
                     hsv_prob=self.hsv_prob),
                 cache=cache_img,
+                name=""
             )
 
         dataset = MosaicDetection(

@@ -28,7 +28,7 @@ class Exp(MyExp):
         # You can uncomment this line to specify a multiscale range
         # self.random_size = (14, 26)
         # dir of dataset images, if data_dir is None, this project will use `datasets` dir
-        self.data_dir = "/home/tf/DVC/datas/"
+        self.data_dir = "/home/tf/DVC/"
         # name of annotation file for training
         self.train_ann = "20220630_cityeyelab_cat6_v1.0_train.json"
         # name of annotation file for evaluation
