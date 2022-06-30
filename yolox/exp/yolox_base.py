@@ -18,7 +18,7 @@ class Exp(BaseExp):
 
         # ---------------- model config ---------------- #
         # detect classes number of model
-        self.num_classes = 80
+        self.num_classes = 6
         # factor of model depth
         self.depth = 1.00
         # factor of model width
@@ -29,7 +29,7 @@ class Exp(BaseExp):
         # ---------------- dataloader config ---------------- #
         # set worker to 4 for shorter dataloader init time
         # If your training process cost many memory, reduce this value.
-        self.data_num_workers = 4
+        self.data_num_workers = 8
         self.input_size = (640, 640)  # (height, width)
         # Actual multiscale ranges: [640 - 5 * 32, 640 + 5 * 32].
         # To disable multiscale training, set the value to 0.
@@ -37,41 +37,41 @@ class Exp(BaseExp):
         # You can uncomment this line to specify a multiscale range
         # self.random_size = (14, 26)
         # dir of dataset images, if data_dir is None, this project will use `datasets` dir
-        self.data_dir = None
+        self.data_dir = "./"
         # name of annotation file for training
-        self.train_ann = "instances_train2017.json"
+        self.train_ann = "20220630_cityeyelab_cat6_v1.0_train.json"
         # name of annotation file for evaluation
-        self.val_ann = "instances_val2017.json"
+        self.val_ann = "20220630_cityeyelab_cat6_v1.0_test.json"
         # name of annotation file for testing
-        self.test_ann = "instances_test2017.json"
+        self.test_ann = "20220630_cityeyelab_cat6_v1.0_test.json"
 
         # --------------- transform config ----------------- #
         # prob of applying mosaic aug
-        self.mosaic_prob = 1.0
+        self.mosaic_prob = 1.0 # YOLOV5
         # prob of applying mixup aug
-        self.mixup_prob = 1.0
+        self.mixup_prob = 0.0 # YOLOV5 
         # prob of applying hsv aug
-        self.hsv_prob = 1.0
+        self.hsv_prob = 0.015 # YOLOV5half
         # prob of applying flip aug
-        self.flip_prob = 0.5
+        self.flip_prob = 0.5 # YOLOV5
         # rotation angle range, for example, if set to 2, the true range is (-2, 2)
-        self.degrees = 10.0
+        self.degrees = 0.0 # YOLOV5
         # translate range, for example, if set to 0.1, the true range is (-0.1, 0.1)
-        self.translate = 0.1
-        self.mosaic_scale = (0.1, 2)
+        self.translate = 0.1 # YOLOV5
+        self.mosaic_scale = (0.1, 2) 
         # apply mixup aug or not
-        self.enable_mixup = True
+        self.enable_mixup = False # YOLOV5
         self.mixup_scale = (0.5, 1.5)
         # shear angle range, for example, if set to 2, the true range is (-2, 2)
-        self.shear = 2.0
+        self.shear = 0.0
 
         # --------------  training config --------------------- #
         # epoch number used for warmup
-        self.warmup_epochs = 5
+        self.warmup_epochs = 3 # YOLOV5
         # max training epoch
-        self.max_epoch = 300
+        self.max_epoch = 150 # YOLOV5
         # minimum learning rate during warmup
-        self.warmup_lr = 0
+        self.warmup_lr = 0.1 # YOLOV5
         self.min_lr_ratio = 0.05
         # learning rate for one image. During training, lr will multiply batchsize.
         self.basic_lr_per_img = 0.01 / 64.0
@@ -80,12 +80,12 @@ class Exp(BaseExp):
         # last #epoch to close augmention like mosaic
         self.no_aug_epochs = 15
         # apply EMA during training
-        self.ema = True
+        self.ema = True # YOLOV5
 
         # weight decay of optimizer
-        self.weight_decay = 5e-4
+        self.weight_decay = 5e-3 # YOLOV5
         # momentum of optimizer
-        self.momentum = 0.9
+        self.momentum = 0.937 # YOLOV5
         # log period in iter, for example,
         # if set to 1, user could see log every iteration.
         self.print_interval = 10
@@ -100,12 +100,12 @@ class Exp(BaseExp):
 
         # -----------------  testing config ------------------ #
         # output image size during evaluation/test
-        self.test_size = (640, 640)
+        self.test_size = (640, 640) # YOLOV5
         # confidence threshold during evaluation/test,
         # boxes whose scores are less than test_conf will be filtered
-        self.test_conf = 0.01
+        self.test_conf = 0.001 # YOLOV5
         # nms threshold
-        self.nmsthre = 0.65
+        self.nmsthre = 0.6# YOLOV5
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
