@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 # Copyright (c) Megvii, Inc. and its affiliates.
 import os, sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import argparse
 import random
 import warnings
@@ -13,8 +14,7 @@ import torch.backends.cudnn as cudnn
 from yolox.core import launch
 from yolox.exp import Exp, get_exp
 from yolox.utils import configure_module, configure_nccl, configure_omp, get_num_devices
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-
+print(os.getcwd())
 
 def make_parser():
     parser = argparse.ArgumentParser("YOLOX train parser")
