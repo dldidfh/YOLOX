@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 # Copyright (c) Megvii, Inc. and its affiliates.
-
+import os, sys
 import argparse
 import random
 import warnings
@@ -13,6 +13,7 @@ import torch.backends.cudnn as cudnn
 from yolox.core import launch
 from yolox.exp import Exp, get_exp
 from yolox.utils import configure_module, configure_nccl, configure_omp, get_num_devices
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 
 def make_parser():
@@ -119,6 +120,7 @@ def main(exp: Exp, args):
 
 
 if __name__ == "__main__":
+
     configure_module()
     args = make_parser().parse_args()
     exp = get_exp(args.exp_file, args.name)
